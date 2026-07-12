@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activité 1 - 50 Questions</title>
+    <style>
+        :root {
+            --primary: #2E7D32;
+            --accent: #4CAF50;
+            --wrong: #d32f2f;
+            --correct: #388E3C;
+            --bg: #f5f5f5;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 15px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .score-box { position: sticky; top: 10px; background: var(--primary); color: white; padding: 15px; text-align: center; border-radius: 10px; font-weight: bold; font-size: 1.2rem; z-index: 1000; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        h1 { color: var(--primary); text-align: center; margin-top: 20px; }
+        .q-card { background: #fff; border: 1px solid #eee; padding: 20px; margin-bottom: 20px; border-radius: 12px; border-left: 5px solid #ccc; }
+        .q-text { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; display: block; }
+        .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        @media (max-width: 600px) { .options { grid-template-columns: 1fr; } }
+        button { padding: 12px; border: 1px solid #ddd; border-radius: 8px; background: #fff; cursor: pointer; text-align: left; font-size: 1rem; transition: 0.2s; }
+        button:hover:not(:disabled) { background: #f1f8e9; border-color: var(--accent); }
+        .btn-correct { background: #c8e6c9 !important; border-color: var(--correct) !important; color: #1b5e20; font-weight: bold; }
+        .btn-wrong { background: #ffcdd2 !important; border-color: var(--wrong) !important; color: #b71c1c; }
+        .nav-btns { text-align: center; margin-top: 40px; }
+        .btn-home { text-decoration: none; color: var(--primary); font-weight: bold; padding: 10px 20px; border: 2px solid var(--primary); border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="score-box" id="score-float">Votre Score : 0 / 50</div>
+    
+    <h1>Activité 2 : Culture & Sciences</h1>
+
+    <div id="quiz-list"></div>
+
+    <div class="nav-btns">
+        <a href="../index.html" class="btn-home">⬅ Retour au menu principal</a>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        { q: "Quel organe pompe le sang ?", a: "Le cœur", o: ["Le foie", "Le cœur", "Le poumon", "Le rein"] },
+        { q: "Capitale du Burkina Faso ?", a: "Ouagadougou", o: ["Bobo", "Koudougou", "Ouagadougou", "Banfora"] },
+        { q: "Date de l'indépendance du Burkina ?", a: "5 août 1960", o: ["11 déc 1958", "5 août 1960", "4 août 1984", "1 nov 1960"] },
+        { q: "Ancien nom du Burkina Faso ?", a: "Haute-Volta", o: ["Soudan", "Haute-Volta", "Dahomey", "Mali"] },
+        { q: "Combien de dents a un adulte ?", a: "32", o: ["28", "30", "32", "34"] },
+        { q: "Le plus grand organe du corps ?", a: "La peau", o: ["Foie", "Peau", "Cerveau", "Poumon"] },
+        { q: "Qui a renommé la Haute-Volta en Burkina ?", a: "Thomas Sankara", o: ["Maurice Yaméogo", "Thomas Sankara", "Lamizana", "Saye Zerbo"] },
+        { q: "Quelle est la monnaie du Burkina ?", a: "Franc CFA", o: ["Dollar", "Franc CFA", "Euro", "Cedi"] },
+        { q: "Combien de régions compte le Burkina ?", a: "13", o: ["10", "13", "45", "15"] },
+        { q: "Combien de provinces au Burkina ?", a: "45", o: ["13", "45", "30", "50"] },
+        { q: "Le fleuve le plus long du monde ?", a: "Le Nil", o: ["Amazone", "Nil", "Mississipi", "Congo"] },
+        { q: "L'étoile la plus proche de la Terre ?", a: "Le Soleil", o: ["Sirius", "Lune", "Soleil", "Mars"] },
+        { q: "Le gaz nécessaire à la respiration ?", a: "Oxygène", o: ["Azote", "Oxygène", "CO2", "Hydrogène"] },
+        { q: "Couleur qui capte la lumière dans les plantes ?", a: "Chlorophylle", o: ["Hémoglobine", "Chlorophylle", "Mélanine", "Carotène"] },
+        { q: "Plus grand mammifère terrestre ?", a: "Éléphant", o: ["Girafe", "Baleine", "Éléphant", "Rhinocéros"] },
+        { q: "L'animal le plus rapide au sol ?", a: "Guépard", o: ["Lion", "Guépard", "Gazelle", "Autruche"] },
+        { q: "Température d'ébullition de l'eau ?", a: "100°C", o: ["90°C", "100°C", "110°C", "0°C"] },
+        { q: "Planète rouge ?", a: "Mars", o: ["Vénus", "Mars", "Jupiter", "Saturne"] },
+        { q: "Combien d'os dans le corps humain ?", a: "206", o: ["150", "206", "300", "210"] },
+        { q: "Organe de la vue ?", a: "L'œil", o: ["L'oreille", "La peau", "L'œil", "Le nez"] },
+        { q: "Nombre de continents ?", a: "6", o: ["4", "5", "6", "7"] },
+        { q: "Le plus grand océan ?", a: "Pacifique", o: ["Atlantique", "Indien", "Pacifique", "Arctique"] },
+        { q: "Qui a écrit 'Crépuscule des temps anciens' ?", a: "Nazi Boni", o: ["Ki-Zerbo", "Nazi Boni", "Sembene", "Léopold Senghor"] },
+        { q: "Point culminant du Burkina ?", a: "Ténakourou", o: ["Pic de Nahouri", "Ténakourou", "Mont Loura", "Hoggar"] },
+        { q: "Siège de l'UEMOA ?", a: "Ouagadougou", o: ["Abidjan", "Dakar", "Ouagadougou", "Lomé"] },
+        { q: "Combien de sens a l'humain ?", a: "5", o: ["4", "5", "6", "3"] },
+        { q: "Capitale de la France ?", a: "Paris", o: ["Lyon", "Paris", "Marseille", "Lille"] },
+        { q: "Plus grande ville du Burkina ?", a: "Ouagadougou", o: ["Bobo", "Ouahigouya", "Ouagadougou", "Banfora"] },
+        { q: "Fruit du baobab ?", a: "Pain de singe", o: ["Gousse", "Pain de singe", "Noix", "Baie"] },
+        { q: "Métal liquide à température ambiante ?", a: "Mercure", o: ["Fer", "Plomb", "Mercure", "Or"] },
+        { q: "Auteur de l'hymne national du Burkina ?", a: "Thomas Sankara", o: ["Nazi Boni", "Thomas Sankara", "Ki-Zerbo", "Inconnu"] },
+        { q: "Le Burkina est un pays ?", a: "Enclavé", o: ["Côtier", "Enclavé", "Insulaire", "Désertique"] },
+        { q: "Nom de l'hymne national du Burkina ?", a: "Ditanyè", o: ["La Voltaïque", "Ditanyè", "La Patrie", "Liberté"] },
+        { q: "Couleurs du drapeau burkinabè ?", a: "Rouge, Vert, Jaune", o: ["Vert, Blanc, Rouge", "Rouge, Vert, Jaune", "Bleu, Blanc, Rouge", "Vert, Jaune, Rouge"] },
+        { q: "Le 'pays des hommes intègres' signifie ?", a: "Burkina Faso", o: ["Mali", "Burkina Faso", "Sénégal", "Niger"] },
+        { q: "Animal emblème du Burkina ?", a: "Étalon", o: ["Lion", "Éléphant", "Étalon", "Aigle"] },
+        { q: "Combien d'États membres dans l'AES ?", a: "3", o: ["5", "3", "15", "8"] },
+        { q: "Capitale économique du Burkina ?", a: "Bobo-Dioulasso", o: ["Ouagadougou", "Koudougou", "Bobo-Dioulasso", "Ouahigouya"] },
+        { q: "Organe de l'ouïe ?", a: "L'oreille", o: ["Le nez", "La langue", "L'oreille", "La main"] },
+        { q: "Vitesse de la lumière (env) ?", a: "300 000 km/s", o: ["300 km/h", "300 000 km/s", "1 000 km/s", "340 m/s"] },
+        { q: "Symbole chimique de l'eau ?", a: "H2O", o: ["CO2", "H2O", "O2", "NaCl"] },
+        { q: "Le plus petit pays du monde ?", a: "Vatican", o: ["Monaco", "Vatican", "Luxembourg", "Malte"] },
+        { q: "Qui a découvert l'Amérique ?", a: "C. Colomb", o: ["Magellan", "Vasco de Gama", "C. Colomb", "Cook"] },
+        { q: "Combien d'heures dans une journée ?", a: "24", o: ["12", "24", "60", "3600"] },
+        { q: "L'organe qui filtre le sang ?", a: "Les reins", o: ["L'estomac", "Les reins", "Le pancréas", "La rate"] },
+        { q: "Quelle science étudie les plantes ?", a: "Botanique", o: ["Zoologie", "Géologie", "Botanique", "Physique"] },
+        { q: "Capitale du Mali ?", a: "Bamako", o: ["Bamako", "Niamey", "Dakar", "Conakry"] },
+        { q: "Nombre de joueurs dans une équipe de foot ?", a: "11", o: ["7", "9", "11", "15"] },
+        { q: "Combien de jours dans une année bissextile ?", a: "366", o: ["364", "365", "366", "360"] },
+        { q: "L'instrument pour voir les étoiles ?", a: "Télescope", o: ["Microscope", "Télescope", "Jumelles", "Périscope"] }
+    ];
+
+    let score = 0;
+    const list = document.getElementById('quiz-list');
+
+    function init() {
+        quizData.forEach((item, i) => {
+            const card = document.createElement('div');
+            card.className = 'q-card';
+            card.innerHTML = `<span class="q-text">${i+1}. ${item.q}</span><div class="options" id="options-${i}"></div>`;
+            list.appendChild(card);
+
+            const optDiv = document.getElementById(`options-${i}`);
+            item.o.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.innerText = opt;
+                btn.onclick = () => {
+                    const allBtns = optDiv.querySelectorAll('button');
+                    allBtns.forEach(b => b.disabled = true);
+                    if(opt === item.a) {
+                        btn.classList.add('btn-correct');
+                        score++;
+                    } else {
+                        btn.classList.add('btn-wrong');
+                        allBtns.forEach(b => { if(b.innerText === item.a) b.classList.add('btn-correct'); });
+                    }
+                    document.getElementById('score-float').innerText = `Votre Score : ${score} / 50`;
+                };
+                optDiv.appendChild(btn);
+            });
+        });
+    }
+    init();
+</script>
+</body>
+</html>
