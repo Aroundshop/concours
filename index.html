@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faso Concours - Portail d'Entraînement</title>
+    <style>
+        :root {
+            --primary-green: #2E7D32;
+            --accent-green: #4CAF50;
+            --dark-green: #1b5e20;
+            --light-bg: #f0f4f0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        header h1 { margin: 0; font-size: 2.2rem; }
+        header p { margin: 10px 0 0; opacity: 0.9; }
+
+        .container {
+            max-width: 1000px;
+            margin: -30px auto 50px;
+            padding: 0 20px;
+        }
+
+        .search-container {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        #searchBar {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--primary-green);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body h3 {
+            margin: 0 0 10px 0;
+            color: var(--dark-green);
+            font-size: 1.3rem;
+        }
+
+        .card-body p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .card-footer {
+            padding: 15px 20px;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .q-count {
+            background: var(--primary-green);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .btn-start {
+            color: var(--primary-green);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.6rem; }
+            .activity-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Faso Concours</h1>
+    <p>Préparez vos concours avec nos QCM quotidiens</p>
+</header>
+
+<div class="container">
+    <div class="search-container">
+        <input type="text" id="searchBar" onkeyup="filterActivities()" placeholder="Rechercher une activité (ex: Histoire, Biologie...)...">
+    </div>
+
+    <div class="activity-grid" id="activityList">
+        
+        <!-- ACTIVITÉ 1 -->
+        <a href="quizzes/activite1.html" class="card">
+            <div class="card-body">
+                <h3>Activité 1 : Culture Générale</h3>
+                <p>Histoire, Géographie et Institutions du Burkina Faso.</p>
+            </div>
+            <div class="card-footer">
+                <span class="q-count">50 Questions</span>
+                <span class="btn-start">COMMENCER →</span>
+            </div>
+        </a>
+
+        <!-- ACTIVITÉ 2 -->
+        <a href="quizzes/activite2.html" class="card">
+            <div class="card-body">
+                <h3>Activité 2 : Sciences et Santé</h3>
+                <p>Biologie humaine, hygiène et environnement.</p>
+            </div>
+            <div class="card-footer">
+                <span class="q-count">50 Questions</span>
+                <span class="btn-start">COMMENCER →</span>
+            </div>
+        </a>
+
+        <!-- AJOUTEZ LES NOUVELLES ACTIVITÉS ICI -->
+
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 Faso Concours - Tous droits réservés.
+</footer>
+
+<script>
+    function filterActivities() {
+        let input = document.getElementById('searchBar').value.toLowerCase();
+        let cards = document.getElementsByClassName('card');
+        
+        for (let i = 0; i < cards.length; i++) {
+            let title = cards[i].querySelector('h3').innerText.toLowerCase();
+            let desc = cards[i].querySelector('p').innerText.toLowerCase();
+            if (title.includes(input) || desc.includes(input)) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
