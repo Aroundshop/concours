@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activité 1 - 50 Questions</title>
+    <title>Activité 1 - Actualités Burkina 2026</title>
     <style>
         :root {
             --primary: #2E7D32;
@@ -33,7 +33,7 @@
 <div class="container">
     <div class="score-box" id="score-float">Votre Score : 0 / 50</div>
     
-    <h1>Activité 1 : Culture & Sciences</h1>
+    <h1>Actualités Burkina Faso 2026</h1>
 
     <div id="quiz-list"></div>
 
@@ -44,56 +44,56 @@
 
 <script>
     const quizData = [
-        { q: "Quel organe pompe le sang ?", a: "Le cœur", o: ["Le foie", "Le cœur", "Le poumon", "Le rein"] },
-        { q: "Capitale du Burkina Faso ?", a: "Ouagadougou", o: ["Bobo", "Koudougou", "Ouagadougou", "Banfora"] },
-        { q: "Date de l'indépendance du Burkina ?", a: "5 août 1960", o: ["11 déc 1958", "5 août 1960", "4 août 1984", "1 nov 1960"] },
-        { q: "Ancien nom du Burkina Faso ?", a: "Haute-Volta", o: ["Soudan", "Haute-Volta", "Dahomey", "Mali"] },
-        { q: "Combien de dents a un adulte ?", a: "32", o: ["28", "30", "32", "34"] },
-        { q: "Le plus grand organe du corps ?", a: "La peau", o: ["Foie", "Peau", "Cerveau", "Poumon"] },
-        { q: "Qui a renommé la Haute-Volta en Burkina ?", a: "Thomas Sankara", o: ["Maurice Yaméogo", "Thomas Sankara", "Lamizana", "Saye Zerbo"] },
-        { q: "Quelle est la monnaie du Burkina ?", a: "Franc CFA", o: ["Dollar", "Franc CFA", "Euro", "Cedi"] },
-        { q: "Combien de régions compte le Burkina ?", a: "13", o: ["10", "13", "45", "15"] },
-        { q: "Combien de provinces au Burkina ?", a: "45", o: ["13", "45", "30", "50"] },
-        { q: "Le fleuve le plus long du monde ?", a: "Le Nil", o: ["Amazone", "Nil", "Mississipi", "Congo"] },
-        { q: "L'étoile la plus proche de la Terre ?", a: "Le Soleil", o: ["Sirius", "Lune", "Soleil", "Mars"] },
-        { q: "Le gaz nécessaire à la respiration ?", a: "Oxygène", o: ["Azote", "Oxygène", "CO2", "Hydrogène"] },
-        { q: "Couleur qui capte la lumière dans les plantes ?", a: "Chlorophylle", o: ["Hémoglobine", "Chlorophylle", "Mélanine", "Carotène"] },
-        { q: "Plus grand mammifère terrestre ?", a: "Éléphant", o: ["Girafe", "Baleine", "Éléphant", "Rhinocéros"] },
-        { q: "L'animal le plus rapide au sol ?", a: "Guépard", o: ["Lion", "Guépard", "Gazelle", "Autruche"] },
-        { q: "Température d'ébullition de l'eau ?", a: "100°C", o: ["90°C", "100°C", "110°C", "0°C"] },
-        { q: "Planète rouge ?", a: "Mars", o: ["Vénus", "Mars", "Jupiter", "Saturne"] },
-        { q: "Combien d'os dans le corps humain ?", a: "206", o: ["150", "206", "300", "210"] },
-        { q: "Organe de la vue ?", a: "L'œil", o: ["L'oreille", "La peau", "L'œil", "Le nez"] },
-        { q: "Nombre de continents ?", a: "6", o: ["4", "5", "6", "7"] },
-        { q: "Le plus grand océan ?", a: "Pacifique", o: ["Atlantique", "Indien", "Pacifique", "Arctique"] },
-        { q: "Qui a écrit 'Crépuscule des temps anciens' ?", a: "Nazi Boni", o: ["Ki-Zerbo", "Nazi Boni", "Sembene", "Léopold Senghor"] },
-        { q: "Point culminant du Burkina ?", a: "Ténakourou", o: ["Pic de Nahouri", "Ténakourou", "Mont Loura", "Hoggar"] },
-        { q: "Siège de l'UEMOA ?", a: "Ouagadougou", o: ["Abidjan", "Dakar", "Ouagadougou", "Lomé"] },
-        { q: "Combien de sens a l'humain ?", a: "5", o: ["4", "5", "6", "3"] },
-        { q: "Capitale de la France ?", a: "Paris", o: ["Lyon", "Paris", "Marseille", "Lille"] },
-        { q: "Plus grande ville du Burkina ?", a: "Ouagadougou", o: ["Bobo", "Ouahigouya", "Ouagadougou", "Banfora"] },
-        { q: "Fruit du baobab ?", a: "Pain de singe", o: ["Gousse", "Pain de singe", "Noix", "Baie"] },
-        { q: "Métal liquide à température ambiante ?", a: "Mercure", o: ["Fer", "Plomb", "Mercure", "Or"] },
-        { q: "Auteur de l'hymne national du Burkina ?", a: "Thomas Sankara", o: ["Nazi Boni", "Thomas Sankara", "Ki-Zerbo", "Inconnu"] },
-        { q: "Le Burkina est un pays ?", a: "Enclavé", o: ["Côtier", "Enclavé", "Insulaire", "Désertique"] },
-        { q: "Nom de l'hymne national du Burkina ?", a: "Ditanyè", o: ["La Voltaïque", "Ditanyè", "La Patrie", "Liberté"] },
-        { q: "Couleurs du drapeau burkinabè ?", a: "Rouge, Vert, Jaune", o: ["Vert, Blanc, Rouge", "Rouge, Vert, Jaune", "Bleu, Blanc, Rouge", "Vert, Jaune, Rouge"] },
-        { q: "Le 'pays des hommes intègres' signifie ?", a: "Burkina Faso", o: ["Mali", "Burkina Faso", "Sénégal", "Niger"] },
-        { q: "Animal emblème du Burkina ?", a: "Étalon", o: ["Lion", "Éléphant", "Étalon", "Aigle"] },
-        { q: "Combien d'États membres dans l'AES ?", a: "3", o: ["5", "3", "15", "8"] },
-        { q: "Capitale économique du Burkina ?", a: "Bobo-Dioulasso", o: ["Ouagadougou", "Koudougou", "Bobo-Dioulasso", "Ouahigouya"] },
-        { q: "Organe de l'ouïe ?", a: "L'oreille", o: ["Le nez", "La langue", "L'oreille", "La main"] },
-        { q: "Vitesse de la lumière (env) ?", a: "300 000 km/s", o: ["300 km/h", "300 000 km/s", "1 000 km/s", "340 m/s"] },
-        { q: "Symbole chimique de l'eau ?", a: "H2O", o: ["CO2", "H2O", "O2", "NaCl"] },
-        { q: "Le plus petit pays du monde ?", a: "Vatican", o: ["Monaco", "Vatican", "Luxembourg", "Malte"] },
-        { q: "Qui a découvert l'Amérique ?", a: "C. Colomb", o: ["Magellan", "Vasco de Gama", "C. Colomb", "Cook"] },
-        { q: "Combien d'heures dans une journée ?", a: "24", o: ["12", "24", "60", "3600"] },
-        { q: "L'organe qui filtre le sang ?", a: "Les reins", o: ["L'estomac", "Les reins", "Le pancréas", "La rate"] },
-        { q: "Quelle science étudie les plantes ?", a: "Botanique", o: ["Zoologie", "Géologie", "Botanique", "Physique"] },
-        { q: "Capitale du Mali ?", a: "Bamako", o: ["Bamako", "Niamey", "Dakar", "Conakry"] },
-        { q: "Nombre de joueurs dans une équipe de foot ?", a: "11", o: ["7", "9", "11", "15"] },
-        { q: "Combien de jours dans une année bissextile ?", a: "366", o: ["364", "365", "366", "360"] },
-        { q: "L'instrument pour voir les étoiles ?", a: "Télescope", o: ["Microscope", "Télescope", "Jumelles", "Périscope"] }
+        { q: "Quelle organisation remplace la CEDEAO pour le Burkina en 2026 ?", a: "L'AES (Alliance des États du Sahel)", o: ["L'UA", "L'AES (Alliance des États du Sahel)", "Le G5 Sahel", "L'UEMOA"] },
+        { q: "Qui dirige la transition burkinabè en 2026 ?", a: "Capitaine Ibrahim Traoré", o: ["Paul-Henri Damiba", "Roch Kaboré", "Capitaine Ibrahim Traoré", "Blaise Compaoré"] },
+        { q: "Quel est le statut des langues nationales dans la nouvelle constitution ?", a: "Langues officielles", o: ["Langues de travail", "Langues secondaires", "Langues officielles", "Langues étrangères"] },
+        { q: "Quelle grande infrastructure minière a été inaugurée à Ouagadougou ?", a: "La Raffinerie d'or", o: ["L'usine de fer", "La Raffinerie d'or", "La mine de zinc", "Le centre du diamant"] },
+        { q: "Quel pays préside la Confédération de l'AES en début 2026 ?", a: "Le Burkina Faso", o: ["Le Mali", "Le Niger", "Le Burkina Faso", "Le Tchad"] },
+        { q: "Comment s'appelle le programme pour l'autosuffisance alimentaire ?", a: "Offensive Agro-pastorale", o: ["Plan Sésame", "Offensive Agro-pastorale", "Faso Riz", "Burkina Vert"] },
+        { q: "Quelle ville accueille l'usine de transformation de Tomate 'Faso Tomate' ?", a: "Bobo-Dioulasso", o: ["Ouagadougou", "Koudougou", "Bobo-Dioulasso", "Loumbila"] },
+        { q: "En 2026, quelle monnaie est au centre des projets de souveraineté ?", a: "La monnaie unique de l'AES", o: ["Le Franc CFA", "L'Euro", "La monnaie unique de l'AES", "Le Dollar"] },
+        { q: "Quel est le rôle principal des VDP en 2026 ?", a: "Défense de la patrie", o: ["Gestion du trafic", "Défense de la patrie", "Administration", "Enseignement"] },
+        { q: "Quelle institution remplace le Conseil Constitutionnel pour plus de souveraineté ?", a: "La Cour Constitutionnelle réformée", o: ["Le Sénat", "La Cour Constitutionnelle réformée", "Le Parlement", "L'Assemblée de transition"] },
+        { q: "Quel grand partenaire stratégique fournit les drones de défense ?", a: "La Turquie", o: ["La France", "La Turquie", "Les USA", "Le Japon"] },
+        { q: "Dans quelle région se situe le projet d'exploitation du manganèse de Tambao ?", a: "Sahel", o: ["Est", "Sahel", "Nord", "Boucle du Mouhoun"] },
+        { q: "Quel est le nouveau slogan de la gendarmerie et de l'armée ?", a: "La Patrie ou la Mort, nous vaincrons !", o: ["Honneur et Patrie", "La Patrie ou la Mort, nous vaincrons !", "Unité et Justice", "Force et Courage"] },
+        { q: "Quelle banque a été créée pour financer l'économie réelle ?", a: "La Banque de Dépôts du Trésor", o: ["BCEAO", "Banque de Dépôts du Trésor", "World Bank", "BOAD"] },
+        { q: "Quel produit est transformé à l'usine de Koudougou en 2026 ?", a: "Le Textile (Coton)", o: ["Le Sucre", "Le Textile (Coton)", "Le Plastique", "Le Lait"] },
+        { q: "Comment appelle-t-on le regroupement Mali-Niger-Burkina ?", a: "Le Liptako-Gourma (AES)", o: ["Le Sahel Vert", "Le Liptako-Gourma (AES)", "Le Bloc Ouest", "La Zone Franc"] },
+        { q: "Quel pays de l'AES partage la plus longue frontière avec le Burkina ?", a: "Le Mali", o: ["Le Niger", "Le Mali", "Le Togo", "Le Bénin"] },
+        { q: "Quelle fête nationale est célébrée avec plus de ferveur patriotique ?", a: "Le 11 Décembre", o: ["Le 14 Juillet", "Le 1er Mai", "Le 11 Décembre", "Le 15 Août"] },
+        { q: "Qui est le porte-parole du gouvernement en 2026 ?", a: "Jean-Emmanuel Ouédraogo", o: ["Rimtalba Jean Emmanuel Ouédraogo", "Alpha Barry", "Lionel Bilgo", "Inconnu"] },
+        { q: "Quelle infrastructure relie Ouaga à Bobo via le bitume neuf ?", a: "L'autoroute de contournement", o: ["Le chemin de fer", "L'autoroute de contournement", "Le pont de l'espoir", "La route du désert"] },
+        { q: "Quel est le premier partenaire militaire non-africain en 2026 ?", a: "La Russie", o: ["La France", "La Russie", "L'Allemagne", "Le Canada"] },
+        { q: "Quel sport national voit son stade (du 4 Août) enfin homologué ?", a: "Le Football", o: ["Le Cyclisme", "Le Football", "La Lutte", "Le Karaté"] },
+        { q: "Quel festival de cinéma se tient à Ouaga en 2025/2026 ?", a: "Le FESPACO", o: ["Le SIAO", "Le FESPACO", "La SNC", "Le Jazz à Ouaga"] },
+        { q: "Quel est l'objectif du projet 'Un étudiant, un ordinateur' ?", a: "Numérisation de l'éducation", o: ["Vente de matériel", "Numérisation de l'éducation", "Cadeau de Noël", "Concours de jeux"] },
+        { q: "Quel pays de l'AES n'a pas d'accès à la mer comme le Burkina ?", a: "Le Mali et le Niger", o: ["Le Mali et le Niger", "Le Sénégal", "La Côte d'Ivoire", "Le Ghana"] },
+        { q: "Quelle usine de fabrication de médicaments est située à Kokologho ?", a: "Propharm", o: ["Propharm", "Faso Pharma", "Sanofi", "CAMEG"] },
+        { q: "Quelle est la vision diplomatique du Burkina en 2026 ?", a: "Le Multipolaire", o: ["L'Occidentalisme", "Le Multipolaire", "L'Isolement", "Le Colonialisme"] },
+        { q: "Qui assure la sécurité dans les villages reconquis ?", a: "Les FDS et VDP", o: ["L'ONU", "Les FDS et VDP", "La Police municipale", "L'Armée étrangère"] },
+        { q: "Quel est le but de la 'Semaine Nationale de la Citoyenneté' ?", a: "Le civisme et patriotisme", o: ["Le sport", "Le civisme et patriotisme", "La cuisine", "Le commerce"] },
+        { q: "Quel minéral est utilisé comme engrais au Burkina ?", a: "Le Phosphate", o: ["L'Or", "Le Phosphate", "Le Sel", "Le Charbon"] },
+        { q: "Quel barrage fournit l'électricité propre au pays ?", a: "Bagré et Bagré-pôle", o: ["Soubré", "Bagré et Bagré-pôle", "Assouan", "Kandaji"] },
+        { q: "Quel grand marché artisanal a lieu tous les 2 ans ?", a: "Le SIAO", o: ["Le SIAO", "Le FESPACO", "La SNC", "Le Salon de l'Auto"] },
+        { q: "Quelle culture de rente remplace progressivement le coton ?", a: "L'Anacarde et le Soja", o: ["Le Tabac", "L'Anacarde et le Soja", "La Canne à sucre", "Le Café"] },
+        { q: "Quel nouveau code régit l'exploitation minière ?", a: "Le Code minier souverain de 2023", o: ["Le Code de 1960", "Le Code minier souverain de 2023", "Le Code colonial", "Le Code civil"] },
+        { q: "Quelle province abrite le plus de déplacés retournés en 2026 ?", a: "Le Soum", o: ["Le Soum", "Le Kadiogo", "Le Houet", "Le Bazèga"] },
+        { q: "Qui est le chef d'État-Major Général des Armées ?", a: "Général Célestin Simporé", o: ["Général Simporé", "Général Traoré", "Colonel Sadou", "Colonel Camara"] },
+        { q: "Quelle plateforme numérique gère les concours de la fonction publique ?", a: "e-Concours", o: ["Facebook", "WhatsApp", "e-Concours", "Google Quiz"] },
+        { q: "Quel fleuve burkinabè irrigue les plaines rizicoles de Sourou ?", a: "Le Mouhoun", o: ["Le Niger", "Le Mouhoun", "Le Nil", "Le Sénégal"] },
+        { q: "Quelle plante est le symbole de la résistance écologique ?", a: "Le Karité", o: ["Le Karité", "Le Baobab", "Le Palmier", "L'Eucalyptus"] },
+        { q: "Quel est le nouveau délai de validité du passeport AES ?", a: "10 ans", o: ["5 ans", "10 ans", "2 ans", "Illimité"] },
+        { q: "Quelle ville est la capitale de la culture en 2026 ?", a: "Bobo-Dioulasso (SNC)", o: ["Ouaga", "Bobo-Dioulasso (SNC)", "Banfora", "Dori"] },
+        { q: "Quel est le montant approximatif du budget national 2026 ?", a: "Plus de 3000 milliards FCFA", o: ["100 milliards", "1000 milliards", "Plus de 3000 milliards FCFA", "5000 milliards"] },
+        { q: "Quelle direction gère le recrutement des VDP ?", a: "La BVDP", o: ["La Police", "La BVDP", "Le Maire", "Le Préfet"] },
+        { q: "Quel média international a été suspendu pour désinformation ?", a: "France 24 / RFI", o: ["CNN", "RTB", "France 24 / RFI", "Al Jazeera"] },
+        { q: "Quel pays de l'AES possède un accès au fleuve Niger ?", a: "Le Mali et le Niger", o: ["Le Burkina", "Le Mali et le Niger", "Le Tchad", "Le Togo"] },
+        { q: "Comment s'appelle l'agence de presse nationale ?", a: "AIB", o: ["AFP", "AIB", "Reuters", "Faso Actu"] },
+        { q: "Quel mois marque la fête de l'indépendance ?", a: "Août", o: ["Janvier", "Août", "Décembre", "Novembre"] },
+        { q: "Quel secteur reçoit le plus gros budget ?", a: "La Défense et Sécurité", o: ["Le Sport", "Le Tourisme", "La Défense et Sécurité", "Le Cinéma"] },
+        { q: "Quel oiseau est sur les armoiries (avant réforme) ?", a: "L'Épervier", o: ["Le Pigeon", "L'Épervier", "L'Autruche", "Le Corbeau"] },
+        { q: "Quel est le vêtement national obligatoire pour les cérémonies ?", a: "Le Faso Dan Fani", o: ["Le Costume", "Le Faso Dan Fani", "Le Jean", "Le Boubou"] }
     ];
 
     let score = 0;
@@ -111,6 +111,9 @@
                 const btn = document.createElement('button');
                 btn.innerText = opt;
                 btn.onclick = () => {
+                    // Signale que l'activité est faite pour l'index
+                    localStorage.setItem('status_activite1', 'done');
+                    
                     const allBtns = optDiv.querySelectorAll('button');
                     allBtns.forEach(b => b.disabled = true);
                     if(opt === item.a) {
