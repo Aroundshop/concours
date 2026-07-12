@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faso Concours - Portail QCM</title>
+    <title>Faso Concours - Portail d'Entraînement</title>
     <style>
         :root {
-            --primary: #2E7D32;
-            --accent: #4CAF50;
-            --dark: #1b5e20;
-            --light-bg: #f4f7f4;
+            --primary-green: #2E7D32;
+            --accent-green: #4CAF50;
+            --dark-green: #1b5e20;
+            --light-bg: #f0f4f0;
             --white: #ffffff;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--light-bg);
             margin: 0;
             padding: 0;
@@ -22,133 +22,114 @@
         }
 
         header {
-            background: linear-gradient(135deg, var(--dark), var(--primary));
+            background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
             color: white;
-            padding: 50px 20px;
+            padding: 40px 20px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        header h1 { margin: 0; font-size: 2.4rem; }
-        header p { margin: 10px 0 0; opacity: 0.9; font-size: 1.1rem; }
+        header h1 { margin: 0; font-size: 2.2rem; }
+        header p { margin: 10px 0 0; opacity: 0.9; }
 
         .container {
             max-width: 1000px;
-            margin: -35px auto 50px;
+            margin: -30px auto 50px;
             padding: 0 20px;
         }
 
-        .search-box {
+        .search-container {
             background: white;
             padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             margin-bottom: 30px;
         }
 
         #searchBar {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 5px;
             font-size: 1rem;
             box-sizing: border-box;
-            outline: none;
         }
-
-        #searchBar:focus { border-color: var(--primary); }
 
         .activity-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .card {
             background: var(--white);
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
-            transition: all 0.3s ease;
-            border-top: 6px solid #ccc; /* Gris par défaut */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        /* Style quand l'activité est terminée */
-        .card.done {
-            border-top-color: var(--accent);
-            background: #f9fff9;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--primary-green);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
         }
 
-        .card-body { padding: 25px; }
+        .card-body {
+            padding: 20px;
+        }
 
         .card-body h3 {
-            margin: 0 0 12px 0;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            margin: 0 0 10px 0;
+            color: var(--dark-green);
+            font-size: 1.3rem;
         }
-
-        .status-badge {
-            display: none;
-            background: var(--accent);
-            color: white;
-            font-size: 0.7rem;
-            padding: 4px 8px;
-            border-radius: 5px;
-            text-transform: uppercase;
-        }
-
-        .card.done .status-badge { display: inline-block; }
 
         .card-body p {
             margin: 0;
             color: #666;
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .card-footer {
-            padding: 15px 25px;
-            background: #fafafa;
+            padding: 15px 20px;
+            background: #f9f9f9;
             border-top: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .q-badge {
-            background: #eee;
-            color: #555;
-            padding: 5px 12px;
+        .q-count {
+            background: var(--primary-green);
+            color: white;
+            padding: 4px 10px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: bold;
         }
 
-        .card.done .q-badge { background: var(--accent); color: white; }
-
-        .go-btn {
-            color: var(--primary);
+        .btn-start {
+            color: var(--primary-green);
             font-weight: bold;
             font-size: 0.9rem;
         }
 
-        footer { text-align: center; padding: 40px; color: #999; font-size: 0.9rem; }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.9rem;
+        }
 
         @media (max-width: 600px) {
+            header h1 { font-size: 1.6rem; }
             .activity-grid { grid-template-columns: 1fr; }
-            header h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -156,84 +137,64 @@
 
 <header>
     <h1>Faso Concours</h1>
-    <p>Votre succès commence ici par l'entraînement</p>
+    <p>Préparez vos concours avec nos QCM quotidiens</p>
 </header>
 
 <div class="container">
-    <div class="search-box">
-        <input type="text" id="searchBar" onkeyup="filterItems()" placeholder="Rechercher une activité (ex: Histoire, Santé, Activité 1...)">
+    <div class="search-container">
+        <input type="text" id="searchBar" onkeyup="filterActivities()" placeholder="Rechercher une activité (ex: Histoire, Biologie...)...">
     </div>
 
-    <div class="activity-grid" id="mainGrid">
+    <div class="activity-grid" id="activityList">
         
         <!-- ACTIVITÉ 1 -->
-        <a href="quizzes/activite1.html" class="card" id="card-activite1">
+        <a href="quizzes/activite1.html" class="card">
             <div class="card-body">
-                <h3>Activité 1 <span class="status-badge">✅ Terminé</span></h3>
-                <p>Culture générale, Histoire et Géographie du Burkina Faso. Test complet.</p>
+                <h3>Activité 1 : Culture Générale</h3>
+                <p>Histoire, Géographie et Institutions du Burkina Faso.</p>
             </div>
             <div class="card-footer">
-                <span class="q-badge">50 Questions</span>
-                <span class="go-btn">OUVRIR →</span>
+                <span class="q-count">50 Questions</span>
+                <span class="btn-start">COMMENCER →</span>
             </div>
         </a>
 
         <!-- ACTIVITÉ 2 -->
-        <a href="quizzes/activite2.html" class="card" id="card-activite2">
+        <a href="quizzes/activite2.html" class="card">
             <div class="card-body">
-                <h3>Activité 2 <span class="status-badge">✅ Terminé</span></h3>
-                <p>Sciences de la Vie et de la Terre, Hygiène et Santé publique.</p>
+                <h3>Activité 2 : Sciences et Santé</h3>
+                <p>Biologie humaine, hygiène et environnement.</p>
             </div>
             <div class="card-footer">
-                <span class="q-badge">50 Questions</span>
-                <span class="go-btn">OUVRIR →</span>
+                <span class="q-count">50 Questions</span>
+                <span class="btn-start">COMMENCER →</span>
             </div>
         </a>
 
-        <!-- Ajoutez vos nouvelles activités ici... -->
+        <!-- AJOUTEZ LES NOUVELLES ACTIVITÉS ICI -->
 
     </div>
 </div>
 
 <footer>
-    &copy; 2024 Faso Concours - Plateforme de préparation.
+    &copy; 2024 Faso Concours - Tous droits réservés.
 </footer>
 
 <script>
-    // 1. Fonction pour vérifier la progression (LocalStorage)
-    function updateProgress() {
-        // Liste de vos IDs d'activités (ajoutez-les ici quand vous en créez de nouvelles)
-        const activities = ['activite1', 'activite2'];
-
-        activities.forEach(id => {
-            if (localStorage.getItem('status_' + id) === 'done') {
-                const element = document.getElementById('card-' + id);
-                if (element) {
-                    element.classList.add('done');
-                    element.querySelector('.go-btn').innerText = "REVOIR ↺";
-                }
-            }
-        });
-    }
-
-    // 2. Fonction de recherche/filtrage
-    function filterItems() {
+    function filterActivities() {
         let input = document.getElementById('searchBar').value.toLowerCase();
         let cards = document.getElementsByClassName('card');
         
         for (let i = 0; i < cards.length; i++) {
             let title = cards[i].querySelector('h3').innerText.toLowerCase();
-            let text = cards[i].querySelector('p').innerText.toLowerCase();
-            if (title.includes(input) || text.includes(input)) {
+            let desc = cards[i].querySelector('p').innerText.toLowerCase();
+            if (title.includes(input) || desc.includes(input)) {
                 cards[i].style.display = "";
             } else {
                 cards[i].style.display = "none";
             }
         }
     }
-
-    // Lancer la vérification au chargement
-    window.onload = updateProgress;
 </script>
 
 </body>
